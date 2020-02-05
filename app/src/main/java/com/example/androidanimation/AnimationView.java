@@ -5,9 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
@@ -33,10 +35,12 @@ public class AnimationView extends View {
     Point mCircleConPoint = new Point();
     //小红点的移动坐标
     Point mCircleMovePoint = new Point();
-    //小红点半径
-    private int mRadius = 20;
+
     //小红点画笔
     private Paint mCirclePaint;
+
+    //图片
+    private Bitmap mBitmap;
 
     public AnimationView(Context context) {
         super(context);
@@ -60,6 +64,23 @@ public class AnimationView extends View {
         drawCircle(canvas);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    private Bitmap imageScale(Bitmap bitmap, int dst_w, int dst_h) {
+        int src_w = bitmap.getWidth();
+        int src_h = bitmap.getHeight();
+        float scale_w = ((float) dst_w) / src_w;
+        float scale_h = ((float) dst_h) / src_h;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale_w, scale_h);
+        Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, src_w, src_h, matrix,
+                true);
+        return dstbmp;
+    }
+
     /**
      * 进行一些初始化操作
      */
@@ -67,15 +88,20 @@ public class AnimationView extends View {
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setStyle(Paint.Style.FILL);
         mCirclePaint.setColor(Color.RED);
-
-
     }
 
     /**
      * 商品加入购物车的小红点
      */
     private void drawCircle(Canvas canvas) {
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.one), mCircleMovePoint.x, mCircleMovePoint.y, mCirclePaint);
+        if (mBitmap == null) {
+            mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        }
+        canvas.drawBitmap(mBitmap, mCircleMovePoint.x, mCircleMovePoint.y, mCirclePaint);
+    }
+
+    public void setImageBitmap(Bitmap bitmap,int width,int height) {
+        this.mBitmap = imageScale(bitmap,width,height);
     }
 
     /**
@@ -139,16 +165,16 @@ public class AnimationView extends View {
                 super.onAnimationEnd(animation);
                 ViewGroup viewGroup = (ViewGroup) getParent();
                 viewGroup.removeView(AnimationView.this);
-                listener.end();
+                listener.animationEnd();
             }
         });
         valueAnimator.start();
 
     }
 
-    public interface KissAnimationListener{
+    public interface KissAnimationListener {
 
-        void end();
+        void animationEnd();
     }
 
 

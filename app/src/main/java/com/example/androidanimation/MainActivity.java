@@ -2,6 +2,7 @@ package com.example.androidanimation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageAirShip, imageOne, imageTwo, imageThree, imageSelect;
     private int mShipWidth;
     private ViewGroup mViewGroup;
+    private int imageWidth,imageHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         imageSelect = findViewById(R.id.imageSelect);
         mViewGroup = (ViewGroup) getWindow().getDecorView();
 
+        imageWidth = DisplayUtils.dip2px(this,100);
+        imageHeight = DisplayUtils.dip2px(this,100);
+
         imageOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,19 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 int[] goodsPoint = new int[2];
                 imageOne.getLocationInWindow(goodsPoint);
 
-                //获取购物车坐标
+                //坐标
                 int[] shoppingCartPoint = new int[2];
                 imageAirShip.getLocationInWindow(shoppingCartPoint);
-
-                //生成商品View
                 AnimationView animationView = new AnimationView(MainActivity.this);
+                animationView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.one),imageWidth,imageHeight);
                 animationView.setCircleStartPoint(goodsPoint[0], goodsPoint[1]);
                 animationView.setCircleEndPoint(shoppingCartPoint[0] + mShipWidth / 2, shoppingCartPoint[1]);
                 //添加View并执行动画
                 mViewGroup.addView(animationView);
                 animationView.startAnimation(new AnimationView.KissAnimationListener() {
                     @Override
-                    public void end() {
+                    public void animationEnd() {
                         imageSelect.setVisibility(View.VISIBLE);
                         imageSelect.setImageResource(R.mipmap.one);
                     }
@@ -59,19 +63,19 @@ public class MainActivity extends AppCompatActivity {
                 int[] goodsPoint = new int[2];
                 imageTwo.getLocationInWindow(goodsPoint);
 
-                //获取购物车坐标
+                //坐标
                 int[] shoppingCartPoint = new int[2];
                 imageAirShip.getLocationInWindow(shoppingCartPoint);
 
-                //生成商品View
                 AnimationView animationView = new AnimationView(MainActivity.this);
+                animationView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.two),imageWidth,imageHeight);
                 animationView.setCircleStartPoint(goodsPoint[0], goodsPoint[1]);
                 animationView.setCircleEndPoint(shoppingCartPoint[0] + mShipWidth / 2, shoppingCartPoint[1]);
                 //添加View并执行动画
                 mViewGroup.addView(animationView);
                 animationView.startAnimation(new AnimationView.KissAnimationListener() {
                     @Override
-                    public void end() {
+                    public void animationEnd() {
                         imageSelect.setVisibility(View.VISIBLE);
                         imageSelect.setImageResource(R.mipmap.two);
                     }
@@ -85,19 +89,19 @@ public class MainActivity extends AppCompatActivity {
                 int[] goodsPoint = new int[2];
                 imageThree.getLocationInWindow(goodsPoint);
 
-                //获取购物车坐标
+                //获取坐标
                 int[] shoppingCartPoint = new int[2];
                 imageAirShip.getLocationInWindow(shoppingCartPoint);
 
-                //生成商品View
                 AnimationView animationView = new AnimationView(MainActivity.this);
+                animationView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.three),imageWidth,imageHeight);
                 animationView.setCircleStartPoint(goodsPoint[0], goodsPoint[1]);
                 animationView.setCircleEndPoint(shoppingCartPoint[0] + mShipWidth / 2, shoppingCartPoint[1]);
                 //添加View并执行动画
                 mViewGroup.addView(animationView);
                 animationView.startAnimation(new AnimationView.KissAnimationListener() {
                     @Override
-                    public void end() {
+                    public void animationEnd() {
                         imageSelect.setVisibility(View.VISIBLE);
                         imageSelect.setImageResource(R.mipmap.three);
                     }
@@ -113,11 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 mShipWidth = imageAirShip.getMeasuredWidth();
             }
         });
-    }
-
-    private void AddCartAnimation() {
-
-
     }
 
 }
