@@ -2,6 +2,7 @@ package com.example.androidanimation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
         imageWidth = DisplayUtils.dip2px(this,100);
         imageHeight = DisplayUtils.dip2px(this,100);
+
+        imageSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MyActivity.class));
+            }
+        });
 
         imageOne.setOnClickListener(new View.OnClickListener() {
             @Override
