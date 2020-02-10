@@ -117,10 +117,6 @@ public class AnimationView extends View {
         this.mCircleMovePoint.y = y;
     }
 
-    public void setImageResource() {
-
-    }
-
     /**
      * 设置结束点
      *
