@@ -100,8 +100,8 @@ public class AnimationView extends View {
         canvas.drawBitmap(mBitmap, mCircleMovePoint.x, mCircleMovePoint.y, mCirclePaint);
     }
 
-    public void setImageBitmap(Bitmap bitmap,int width,int height) {
-        this.mBitmap = imageScale(bitmap,width,height);
+    public void setImageBitmap(Bitmap bitmap, int width, int height) {
+        this.mBitmap = imageScale(bitmap, width, height);
     }
 
     /**
@@ -201,6 +201,15 @@ public class AnimationView extends View {
             return new Point(x, y);
         }
 
+    }
+
+    public static Bitmap viewConversionBitmap(View v) {
+        int w = v.getWidth();
+        int h = v.getHeight();
+        Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmp);
+        v.draw(c);
+        return bmp;
     }
 
 }
