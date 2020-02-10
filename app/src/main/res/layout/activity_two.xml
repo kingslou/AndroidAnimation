@@ -23,7 +23,6 @@
 
             <RelativeLayout
                 android:id="@+id/imageOneRoot"
-                android:background="@android:color/darker_gray"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
