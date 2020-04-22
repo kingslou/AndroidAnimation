@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         imageSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MyActivity.class));
+                startActivity(new Intent(MainActivity.this,DragActivity.class));
             }
         });
 
