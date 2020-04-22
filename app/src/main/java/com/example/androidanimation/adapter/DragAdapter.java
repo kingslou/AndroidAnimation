@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -51,10 +52,10 @@ public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final Button button = holder.itemView.findViewById(R.id.btnDrag);
-        button.setText(dragInfoList.get(position).getDragText());
+        final TextView textWords = holder.itemView.findViewById(R.id.textWords);
+        textWords.setText(dragInfoList.get(position).getDragText());
         final DragInfo dragInfo = dragInfoList.get(position);
-        button.setOnTouchListener(new View.OnTouchListener() {
+        textWords.setOnTouchListener(new View.OnTouchListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -65,8 +66,8 @@ public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
                         ClipData.Item item = new ClipData.Item(text);
                         String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                         ClipData dragData = new ClipData(text, mimeTypes, item);
-                        View.DragShadowBuilder shadow = new View.DragShadowBuilder(button);
-                        button.startDragAndDrop(dragData, shadow,dragInfo , View.DRAG_FLAG_GLOBAL);
+                        View.DragShadowBuilder shadow = new View.DragShadowBuilder(textWords);
+                        textWords.startDragAndDrop(dragData, shadow,dragInfo , View.DRAG_FLAG_GLOBAL);
                     }
                     return true;
                 } else {

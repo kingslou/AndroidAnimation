@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="15dp">
-
+    android:layout_marginEnd="15dp"
+>
 
     <TextView
-        android:id="@+id/textWords"
+        android:id="@+id/textResultWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/icon_word_bg"
+        android:background="@mipmap/icon_word_display_bg"
         android:gravity="center"
+        android:layout_centerInParent="true"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
         android:textColor="@android:color/black"
         android:textSize="25sp"
         android:textStyle="bold"

@@ -8,14 +8,43 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleResult"
         android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleDrag"
         android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/textSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:textColor="@android:color/black"
+        android:text="O(∩_∩)O哈哈~    选对了"
+        />
+
+    <TextView
+        android:id="@+id/textError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="难过(ಥ﹏ಥ)   再加油"
+        />
 
 
 </LinearLayout>

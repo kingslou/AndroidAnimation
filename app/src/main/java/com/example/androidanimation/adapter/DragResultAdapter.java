@@ -14,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +34,7 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
 
     private List<DragInfo> dragInfoList = new ArrayList<>();
 
-    private Button currentTouchView;
+    private TextView currentTouchView;
     private int currentTouchPosition;
     private Context mContext;
     private DragListener dragListener;
@@ -40,6 +42,10 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
     public interface DragListener {
 
         void drag(DragInfo dragInfo);
+
+        void error();
+
+        void success();
     }
 
     public void setDragListener(DragListener dragListener) {
@@ -57,6 +63,16 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
                 return false;
             }
         }
+        //todo 判断结果是否正确
+        StringBuilder stringBuilder = new StringBuilder();
+        for(DragInfo dragInfo :dragInfoList){
+            stringBuilder.append(dragInfo.getDragText());
+            if(stringBuilder.toString().equals("world")){
+                dragListener.success();
+            }else{
+                dragListener.error();
+            }
+        }
         return true;
     }
 
@@ -64,7 +80,7 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_drag, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_drag_result, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -72,18 +88,16 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Button button = holder.itemView.findViewById(R.id.btnDrag);
-        button.setBackgroundResource(R.color.colorAccent);
+        final TextView textWords = holder.itemView.findViewById(R.id.textResultWords);
         final DragInfo dragInfo = dragInfoList.get(position);
-        button.setText(dragInfo.getDragText());
+        textWords.setText(dragInfo.getDragText());
         DragUtils.bindDragInZone(holder.itemView, new DragUtils.DragStatus() {
             @Override
             public void complete(Object obj) {
-                Log.e("ddd", obj + "");
                 if (obj instanceof DragInfo) {
                     DragInfo info = (DragInfo) obj;
                     //todo 判断是否是同一个数据源左右拖动
-                    if(currentTouchView!=null){
+                    if (currentTouchView != null) {
                         //todo 同一行 数据交换
                         String changeText = info.getDragText();
                         String oldText = dragInfo.getDragText();
@@ -92,13 +106,13 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
                         currentTouchView = null;
                         //新的赋值
                         dragInfo.setDragText(changeText);
-                        button.setText(changeText);
+                        textWords.setText(changeText);
                         //给被移动的重新赋值
                         info.setDragText(oldText);
-                    }else{
+                    } else {
                         dragInfo.setDragText(info.getDragText());
-                        button.setText(info.getDragText());
-                        if(dragListener!=null){
+                        textWords.setText(info.getDragText());
+                        if (dragListener != null) {
                             dragListener.drag(info);
                         }
                     }
@@ -107,25 +121,25 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
             }
         });
 
-        button.setOnTouchListener(new View.OnTouchListener() {
+        textWords.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                String text = button.getText().toString();
+                String text = textWords.getText().toString();
                 if (TextUtils.isEmpty(text)) {
                     return false;
                 }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    currentTouchView = button;
+                    currentTouchView = textWords;
                     currentTouchPosition = position;
                     /*首先,构造ClipData对象,该对象是用来存储拖拽行为时的产生的数据*/
                     ClipData.Item item = new ClipData.Item(text);
                     String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                     ClipData dragData = new ClipData(text, mimeTypes, item);
-                    View.DragShadowBuilder shadow = new View.DragShadowBuilder(button);
+                    View.DragShadowBuilder shadow = new View.DragShadowBuilder(textWords);
                     if (Build.VERSION.SDK_INT >= 24) {
-                        button.startDragAndDrop(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
+                        textWords.startDragAndDrop(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
                     } else {
-                        button.startDrag(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
+                        textWords.startDrag(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
                     }
                     return true;
                 } else {

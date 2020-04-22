@@ -1,6 +1,7 @@
 package com.example.androidanimation;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,12 +48,11 @@ public class DragActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         List<DragInfo> dragInfoList = new ArrayList<>();
 
-        dragInfoList.add(new DragInfo("0","w","0"));
-        dragInfoList.add(new DragInfo("1","o","0"));
-        dragInfoList.add(new DragInfo("2","r","0"));
-        dragInfoList.add(new DragInfo("3","l","0"));
-        dragInfoList.add(new DragInfo("4","d","0"));
-        dragInfoList.add(new DragInfo("6","o","0"));
+        dragInfoList.add(new DragInfo("0", "w", "0"));
+        dragInfoList.add(new DragInfo("1", "o", "0"));
+        dragInfoList.add(new DragInfo("2", "r", "0"));
+        dragInfoList.add(new DragInfo("3", "l", "0"));
+        dragInfoList.add(new DragInfo("4", "d", "0"));
 
         dragAdapter = new DragAdapter(dragInfoList);
         recyclerView.setAdapter(dragAdapter);
@@ -62,11 +62,11 @@ public class DragActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
-        dragResultList.add(new DragInfo("0","","0"));
-        dragResultList.add(new DragInfo("1","","0"));
-        dragResultList.add(new DragInfo("2","","0"));
-        dragResultList.add(new DragInfo("3","","0"));
-        dragResultList.add(new DragInfo("4","","0"));
+        dragResultList.add(new DragInfo("0", "", "0"));
+        dragResultList.add(new DragInfo("1", "", "0"));
+        dragResultList.add(new DragInfo("2", "", "0"));
+        dragResultList.add(new DragInfo("3", "", "0"));
+        dragResultList.add(new DragInfo("4", "", "0"));
         dragResultAdapter = new DragResultAdapter(dragResultList);
         recyclerView.setAdapter(dragResultAdapter);
 
@@ -74,6 +74,18 @@ public class DragActivity extends AppCompatActivity {
             @Override
             public void drag(DragInfo dragInfo) {
                 dragAdapter.removeItem(dragInfo);
+            }
+
+            @Override
+            public void error() {
+                mBinding.textError.setVisibility(View.VISIBLE);
+                mBinding.textSuccess.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void success() {
+                mBinding.textSuccess.setVisibility(View.VISIBLE);
+                mBinding.textError.setVisibility(View.GONE);
             }
         });
     }
