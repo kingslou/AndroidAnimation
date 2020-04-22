@@ -46,6 +46,8 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
         void error();
 
         void success();
+
+        void dragAdd(DragInfo dragInfo);
     }
 
     public void setDragListener(DragListener dragListener) {
@@ -110,6 +112,10 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
                         //给被移动的重新赋值
                         info.setDragText(oldText);
                     } else {
+                        //如果已经有单词占位
+                        if(!TextUtils.isEmpty(dragInfo.getDragText())){
+                            return;
+                        }
                         dragInfo.setDragText(info.getDragText());
                         textWords.setText(info.getDragText());
                         if (dragListener != null) {

@@ -7,12 +7,10 @@ public class DragInfo implements Serializable {
 
     private String id;
     private String dragText;
-    private String dragPosition;
 
-    public DragInfo(String id, String dragText, String dragPosition) {
+    public DragInfo(String id, String dragText) {
         this.id = id;
         this.dragText = dragText;
-        this.dragPosition = dragPosition;
     }
 
     public String getId() {
@@ -31,26 +29,17 @@ public class DragInfo implements Serializable {
         this.dragText = dragText;
     }
 
-    public String getDragPosition() {
-        return dragPosition;
-    }
-
-    public void setDragPosition(String dragPosition) {
-        this.dragPosition = dragPosition;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DragInfo dragInfo = (DragInfo) o;
-        return Objects.equals(id, dragInfo.id) &&
-                Objects.equals(dragText, dragInfo.dragText) &&
-                Objects.equals(dragPosition, dragInfo.dragPosition);
+        return id.equals(dragInfo.id) &&
+                dragText.equals(dragInfo.dragText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dragText, dragPosition);
+        return Objects.hash(id, dragText);
     }
 }

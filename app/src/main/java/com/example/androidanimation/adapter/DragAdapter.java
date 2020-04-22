@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,6 +38,14 @@ public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
             if(info.getId().equals(dragInfo.getId())){
                 iterator.remove();
             }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void addItem(DragInfo dragInfo){
+        dragInfoList.add(dragInfo);
+        for(DragInfo dragInfo1 :  dragInfoList){
+            Log.e("打印",dragInfo1.getDragText());
         }
         notifyDataSetChanged();
     }
