@@ -18,13 +18,26 @@ import com.example.androidanimation.R;
 import com.example.androidanimation.bean.DragInfo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
 
     private List<DragInfo> dragInfoList = new ArrayList<>();
+
     public DragAdapter(List<DragInfo> dragInfoList) {
         this.dragInfoList = dragInfoList;
+    }
+
+    public void removeItem(DragInfo dragInfo) {
+        Iterator iterator = dragInfoList.iterator();
+        while (iterator.hasNext()){
+            DragInfo info = (DragInfo) iterator.next();
+            if(info.getId().equals(dragInfo.getId())){
+                iterator.remove();
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -40,7 +53,7 @@ public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Button button = holder.itemView.findViewById(R.id.btnDrag);
         button.setText(dragInfoList.get(position).getDragText());
-
+        final DragInfo dragInfo = dragInfoList.get(position);
         button.setOnTouchListener(new View.OnTouchListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -53,7 +66,7 @@ public class DragAdapter extends RecyclerView.Adapter<DragAdapter.ViewHolder> {
                         String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                         ClipData dragData = new ClipData(text, mimeTypes, item);
                         View.DragShadowBuilder shadow = new View.DragShadowBuilder(button);
-                        button.startDragAndDrop(dragData, shadow, null, View.DRAG_FLAG_GLOBAL);
+                        button.startDragAndDrop(dragData, shadow,dragInfo , View.DRAG_FLAG_GLOBAL);
                     }
                     return true;
                 } else {

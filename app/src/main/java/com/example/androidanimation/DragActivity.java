@@ -12,8 +12,16 @@ import com.example.androidanimation.adapter.DragResultAdapter;
 import com.example.androidanimation.bean.DragInfo;
 import com.example.androidanimation.databinding.ActivityDragBinding;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.io.FileDescriptor.in;
+import static java.io.FileDescriptor.out;
 
 public class DragActivity extends AppCompatActivity {
 
@@ -39,15 +47,13 @@ public class DragActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         List<DragInfo> dragInfoList = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            DragInfo dragInfo = new DragInfo();
-            dragInfo.setId(i + "");
-            dragInfo.setDragPosition(i + "");
-            dragInfo.setDragText("A" + i);
-            dragInfoList.add(dragInfo);
-        }
+        dragInfoList.add(new DragInfo("0","w","0"));
+        dragInfoList.add(new DragInfo("1","o","0"));
+        dragInfoList.add(new DragInfo("2","r","0"));
+        dragInfoList.add(new DragInfo("3","l","0"));
+        dragInfoList.add(new DragInfo("4","d","0"));
+        dragInfoList.add(new DragInfo("6","o","0"));
 
-        dragResultList.addAll(dragInfoList);
         dragAdapter = new DragAdapter(dragInfoList);
         recyclerView.setAdapter(dragAdapter);
     }
@@ -56,7 +62,20 @@ public class DragActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
+        dragResultList.add(new DragInfo("0","","0"));
+        dragResultList.add(new DragInfo("1","","0"));
+        dragResultList.add(new DragInfo("2","","0"));
+        dragResultList.add(new DragInfo("3","","0"));
+        dragResultList.add(new DragInfo("4","","0"));
         dragResultAdapter = new DragResultAdapter(dragResultList);
         recyclerView.setAdapter(dragResultAdapter);
+
+        dragResultAdapter.setDragListener(new DragResultAdapter.DragListener() {
+            @Override
+            public void drag(DragInfo dragInfo) {
+                dragAdapter.removeItem(dragInfo);
+            }
+        });
     }
+
 }
