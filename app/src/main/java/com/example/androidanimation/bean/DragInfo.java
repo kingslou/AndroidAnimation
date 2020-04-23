@@ -8,6 +8,10 @@ public class DragInfo implements Serializable {
     private String id;
     private String dragText;
 
+    public DragInfo(){
+
+    }
+
     public DragInfo(String id, String dragText) {
         this.id = id;
         this.dragText = dragText;
@@ -41,5 +45,13 @@ public class DragInfo implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, dragText);
+    }
+
+    @Override
+    public String toString() {
+        return "DragInfo{" +
+                "id='" + id + '\'' +
+                ", dragText='" + dragText + '\'' +
+                '}';
     }
 }

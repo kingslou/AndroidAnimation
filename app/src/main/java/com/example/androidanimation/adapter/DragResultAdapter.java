@@ -28,6 +28,7 @@ import com.example.androidanimation.R;
 import com.example.androidanimation.bean.DragInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.ViewHolder> {
@@ -101,16 +102,8 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
                     //todo 判断是否是同一个数据源左右拖动
                     if (currentTouchView != null) {
                         //todo 同一行 数据交换
-                        String changeText = info.getDragText();
-                        String oldText = dragInfo.getDragText();
-                        // 首先这个info 是移动过来的数据
-                        currentTouchView.setText(oldText);
-                        currentTouchView = null;
-                        //新的赋值
-                        dragInfo.setDragText(changeText);
-                        textWords.setText(changeText);
-                        //给被移动的重新赋值
-                        info.setDragText(oldText);
+                        Collections.swap(dragInfoList,position,currentTouchPosition);
+                        notifyDataSetChanged();
                     } else {
                         //如果已经有单词占位
                         if(!TextUtils.isEmpty(dragInfo.getDragText())){
