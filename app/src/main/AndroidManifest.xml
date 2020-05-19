@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="landscape"
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="fullSensor"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +19,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MyActivity" android:screenOrientation="landscape"></activity>
+        <activity android:name=".MainActivity" android:screenOrientation="fullSensor"/>
 
-        <activity android:name=".DragActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".MyActivity" android:screenOrientation="fullSensor"></activity>
+
+        <activity android:name=".DragActivity" android:screenOrientation="fullSensor"/>
+
+        <activity android:name=".CardActivity" android:screenOrientation="fullSensor"/>
     </application>
 
 </manifest>

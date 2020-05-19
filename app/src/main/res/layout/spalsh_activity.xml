@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <Button
+        android:id="@+id/btnBezier"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="贝塞尔曲线"
+        />
+
+
+    <Button
+        android:id="@+id/btnDrag"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="拖动动画"
+        />
+
+    <Button
+        android:id="@+id/btnCard"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="翻牌效果"
+        />
+
+
+
+</LinearLayout>

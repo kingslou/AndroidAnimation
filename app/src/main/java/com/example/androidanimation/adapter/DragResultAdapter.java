@@ -120,32 +120,32 @@ public class DragResultAdapter extends RecyclerView.Adapter<DragResultAdapter.Vi
             }
         });
 
-        textWords.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                String text = textWords.getText().toString();
-                if (TextUtils.isEmpty(text)) {
-                    return false;
-                }
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    currentTouchView = textWords;
-                    currentTouchPosition = position;
-                    /*首先,构造ClipData对象,该对象是用来存储拖拽行为时的产生的数据*/
-                    ClipData.Item item = new ClipData.Item(text);
-                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-                    ClipData dragData = new ClipData(text, mimeTypes, item);
-                    View.DragShadowBuilder shadow = new View.DragShadowBuilder(textWords);
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        textWords.startDragAndDrop(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
-                    } else {
-                        textWords.startDrag(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
-                    }
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+//        textWords.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                String text = textWords.getText().toString();
+//                if (TextUtils.isEmpty(text)) {
+//                    return false;
+//                }
+//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    currentTouchView = textWords;
+//                    currentTouchPosition = position;
+//                    /*首先,构造ClipData对象,该对象是用来存储拖拽行为时的产生的数据*/
+//                    ClipData.Item item = new ClipData.Item(text);
+//                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+//                    ClipData dragData = new ClipData(text, mimeTypes, item);
+//                    View.DragShadowBuilder shadow = new View.DragShadowBuilder(textWords);
+//                    if (Build.VERSION.SDK_INT >= 24) {
+//                        textWords.startDragAndDrop(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
+//                    } else {
+//                        textWords.startDrag(dragData, shadow, dragInfo, View.DRAG_FLAG_GLOBAL);
+//                    }
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+//            }
+//        });
     }
 
     @Override

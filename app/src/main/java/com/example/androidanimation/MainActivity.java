@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         imageOneRoot = findViewById(R.id.imageOneRoot);
         mViewGroup = (ViewGroup) getWindow().getDecorView();
 
-        startActivity(new Intent(MainActivity.this,DragActivity.class));
 
         imageWidth = DisplayUtils.dip2px(this,100);
         imageHeight = DisplayUtils.dip2px(this,100);
