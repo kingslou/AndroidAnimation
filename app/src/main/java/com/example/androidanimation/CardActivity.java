@@ -84,7 +84,9 @@ public class CardActivity extends AppCompatActivity {
 
             int index = binding.llStart.getChildCount();
 
-            CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
+            long totalCount = startCount * 1000;
+
+            CountDownTimer countDownTimer = new CountDownTimer(totalCount, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     if (millisUntilFinished == 0) {
