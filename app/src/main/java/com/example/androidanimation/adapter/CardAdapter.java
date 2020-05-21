@@ -5,10 +5,12 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidanimation.R;
 import com.example.androidanimation.bean.CardInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,10 +31,41 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     private Context mContext;
     private AnimatorSet mRightOutSet; // 右出动画
     private AnimatorSet mLeftInSet; // 左入动画
+    private boolean coverAllCards = false;
+    private List<View> checkView = new ArrayList<>();
 
     public CardAdapter(List<CardInfo> cardInfos) {
         this.cardInfoList = cardInfos;
     }
+
+    public void coverCards(boolean cover){
+        this.coverAllCards = cover;
+        notifyDataSetChanged();
+    }
+
+
+    public void checkClick(){
+        int resultCount = 0;
+        for(CardInfo cardInfo : cardInfoList){
+            if(cardInfo.isFront()){
+                resultCount++;
+            }
+            if(resultCount==2){
+                return;
+            }
+        }
+        Toast.makeText(mContext,"选了两个",Toast.LENGTH_SHORT).show();
+    }
+
+
+    public interface CardListener{
+
+        void selectSuccess();
+
+        void selectFail();
+
+    }
+
 
     @NonNull
     @Override
@@ -51,9 +85,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             setCameraDistance(holder.cardFront,holder.cardBackGround);
             setAnimators();
             flipCard(cardInfo,holder.cardFront,holder.cardBackGround);
+            if(!checkView.contains(holder.itemView)){
+                checkView.add(holder.itemView);
+            }
+            checkClick();
         });
 
-        if(cardInfo.isNeedCover()){
+        if(cardInfo.isNeedCover()|| coverAllCards){
             setCameraDistance(holder.cardFront,holder.cardBackGround);
             setAnimators();
             mRightOutSet.setTarget(holder.cardFront);

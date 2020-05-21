@@ -9,6 +9,8 @@ public class CardInfo {
     private String cardNameBackGround;
     private boolean isFront;
     private boolean needCover;
+    //正确标记
+    private String answerSign;
 
     public String getCardName() {
         return cardName;
@@ -40,5 +42,13 @@ public class CardInfo {
 
     public boolean isNeedCover() {
         return needCover;
+    }
+
+    public void setAnswerSign(String answerSign) {
+        this.answerSign = answerSign;
+    }
+
+    public String getAnswerSign() {
+        return answerSign;
     }
 }
