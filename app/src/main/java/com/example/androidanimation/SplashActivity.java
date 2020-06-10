@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidanimation.databinding.SpalshActivityBinding;
+import com.tencent.bugly.beta.Beta;
 
 /**
  * @author 86153
@@ -52,6 +53,9 @@ public class SplashActivity extends AppCompatActivity {
 
         binding.btnFire.setOnClickListener(v -> startActivity(new Intent(SplashActivity.this,FireworksExampleActivity.class)));
 
+        binding.btnUpdate.setOnClickListener(v->{
+            Beta.checkAppUpgrade();
+        });
     }
 
     Runnable runnable = new Runnable() {
