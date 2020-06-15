@@ -17,7 +17,10 @@ import com.example.androidanimation.adapter.CardAdapter;
 import com.example.androidanimation.bean.CardInfo;
 import com.example.androidanimation.databinding.ActivityCardBinding;
 import com.example.androidanimation.widget.star.StarLayout;
+import com.umeng.analytics.MobclickAgent;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CardActivity extends AppCompatActivity {
@@ -34,6 +37,10 @@ public class CardActivity extends AppCompatActivity {
         binding = ActivityCardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initView();
+
+        HashMap<String,String> map = new HashMap<>(1);
+        map.put("phone","15365313897");
+        MobclickAgent.onEvent(this,"100_3",map);
     }
 
     private void mockData() {

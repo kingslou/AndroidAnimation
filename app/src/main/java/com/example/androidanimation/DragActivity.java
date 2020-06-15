@@ -12,6 +12,7 @@ import com.example.androidanimation.adapter.DragAdapter;
 import com.example.androidanimation.adapter.DragResultAdapter;
 import com.example.androidanimation.bean.DragInfo;
 import com.example.androidanimation.databinding.ActivityDragBinding;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,6 +41,8 @@ public class DragActivity extends AppCompatActivity {
 
         initRecycleTop(mBinding.recycleDrag);
         initRecycleBottom(mBinding.recycleResult);
+
+        MobclickAgent.onEvent(this,"100_2");
     }
 
     private void initRecycleTop(RecyclerView recyclerView) {

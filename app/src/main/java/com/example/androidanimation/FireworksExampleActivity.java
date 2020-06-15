@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.AccelerateInterpolator;
 
 import com.plattysoft.leonids.ParticleSystem;
+import com.umeng.analytics.MobclickAgent;
 
 public class FireworksExampleActivity extends Activity implements OnClickListener {
 
@@ -15,6 +16,8 @@ public class FireworksExampleActivity extends Activity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_particle_system_example);
 		findViewById(R.id.button1).setOnClickListener(this);
+
+		MobclickAgent.onEvent(this,"100_4");
 	}
 
 	@Override

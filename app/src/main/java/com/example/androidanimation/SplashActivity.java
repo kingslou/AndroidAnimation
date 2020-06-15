@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidanimation.databinding.SpalshActivityBinding;
 import com.tencent.bugly.beta.Beta;
+import com.umeng.analytics.MobclickAgent;
+
+import java.util.HashMap;
 
 /**
  * @author 86153
@@ -54,7 +57,9 @@ public class SplashActivity extends AppCompatActivity {
         binding.btnFire.setOnClickListener(v -> startActivity(new Intent(SplashActivity.this,FireworksExampleActivity.class)));
 
         binding.btnUpdate.setOnClickListener(v->{
-            Beta.checkAppUpgrade();
+//            Beta.checkAppUpgrade();
+
+            startActivity(new Intent(this,WebActivity.class));
         });
     }
 
@@ -81,6 +86,14 @@ public class SplashActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         AsyncTask.execute(runnable);
+        HashMap<String,String> map = new HashMap<>(1);
+        map.put("phone","1153653110");
+        MobclickAgent.onEvent(this,"100_3",map);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override

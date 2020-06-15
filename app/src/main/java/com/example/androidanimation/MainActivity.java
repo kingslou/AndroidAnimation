@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
-
+        MobclickAgent.onEvent(this,"100_1");
         imageAirShip = findViewById(R.id.imageShip);
         imageTwo = findViewById(R.id.imageTwo);
         imageThree = findViewById(R.id.imageThree);

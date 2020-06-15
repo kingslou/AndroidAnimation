@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.example.androidanimation"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -47,4 +47,10 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.tencent.bugly:crashreport_upgrade:1.4.5'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
+
+    // 友盟基础组件库（所有友盟业务SDK都依赖基础组件库）
+    implementation "com.umeng.umsdk:common:2.1.0"
+
+// 友盟统计SDK
+    implementation "com.umeng.umsdk:analytics:8.1.3"
 }
