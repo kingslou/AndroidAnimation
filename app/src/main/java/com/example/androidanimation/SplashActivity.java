@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidanimation.databinding.SpalshActivityBinding;
+import com.example.androidanimation.scroll.ScrollingActivity;
+import com.example.androidanimation.utils.StatusBarUtils;
 import com.tencent.bugly.beta.Beta;
 import com.umeng.analytics.MobclickAgent;
 
@@ -57,10 +59,14 @@ public class SplashActivity extends AppCompatActivity {
         binding.btnFire.setOnClickListener(v -> startActivity(new Intent(SplashActivity.this,FireworksExampleActivity.class)));
 
         binding.btnUpdate.setOnClickListener(v->{
-//            Beta.checkAppUpgrade();
-
-            startActivity(new Intent(this,WebActivity.class));
+            Beta.checkAppUpgrade();
         });
+
+        binding.btnScroll.setOnClickListener(v->{
+            startActivity(new Intent(this, ScrollingActivity.class));
+        });
+
+        StatusBarUtils.setDeepStatusBar(true,this);
     }
 
     Runnable runnable = new Runnable() {

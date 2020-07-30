@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@android:color/holo_green_light"
+    android:fitsSystemWindows="true">
 
-
-    <Button
-        android:id="@+id/btnBezier"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="贝塞尔曲线" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/cameraView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="CameraView" />
+
+        <Button
+            android:id="@+id/btnBezier"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="贝塞尔曲线" />
 
 
-    <Button
-        android:id="@+id/btnDrag"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="拖动动画" />
+        <Button
+            android:id="@+id/btnDrag"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="拖动动画" />
 
-    <Button
-        android:id="@+id/btnCard"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="翻牌效果" />
+        <Button
+            android:id="@+id/btnCard"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="翻牌效果" />
 
-    <Button
-        android:id="@+id/btnFire"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="爆炸效果" />
+        <Button
+            android:id="@+id/btnFire"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="爆炸效果" />
 
-    <Button
-        android:id="@+id/btnLine"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="连线游戏" />
+        <Button
+            android:id="@+id/btnLine"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="连线游戏" />
 
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="检查更新" />
-
-
-    <com.example.androidanimation.widget.SaleProgressView
-        android:id="@+id/spv"
-        android:layout_width="220dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="检查更新" />
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnScroll"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="头部图片滚动渐变" />
+
+
+        <com.example.androidanimation.widget.SaleProgressView
+            android:id="@+id/spv"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp" />
+
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

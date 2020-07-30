@@ -69,12 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 animationView.setCircleEndPoint(shoppingCartPoint[0] + mShipWidth / 2, shoppingCartPoint[1]);
                 //添加View并执行动画
                 mViewGroup.addView(animationView);
-                animationView.startAnimation(new AnimationView.KissAnimationListener() {
-                    @Override
-                    public void animationEnd() {
-                        imageSelect.setVisibility(View.VISIBLE);
-                        imageSelect.setImageResource(R.mipmap.one);
-                    }
+                animationView.startAnimation(() -> {
+                    imageSelect.setVisibility(View.VISIBLE);
+                    imageSelect.setImageResource(R.mipmap.one);
                 });
             }
         });

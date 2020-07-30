@@ -16,4 +16,10 @@
         android:layout_centerVertical="true"
         android:text="Button" />
 
+    <com.example.androidanimation.widget.TouchView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@android:color/holo_red_dark"
+        />
+
 </RelativeLayout>
