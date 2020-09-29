@@ -47,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnBezier.setOnClickListener(v -> {
-            startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            startActivity(new Intent(SplashActivity.this,Flap.class));
         });
 
         binding.btnDrag.setOnClickListener(v -> startActivity(new Intent(SplashActivity.this,DragActivity.class)));

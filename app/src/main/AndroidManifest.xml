@@ -75,6 +75,8 @@
                android:screenOrientation="portrait"
             />
 
+        <activity android:name=".Flap"/>
+
         <activity android:name=".FireworksExampleActivity" android:screenOrientation="portrait"/>
     </application>
 
