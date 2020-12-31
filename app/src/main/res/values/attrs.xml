@@ -22,4 +22,11 @@
             <enum name="rubber_band" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="HIndicator">
+
+        <attr name="hi_bgColor" format="color" />
+        <attr name="hi_indicatorColor" format="color" />
+
+    </declare-styleable>
 </resources>

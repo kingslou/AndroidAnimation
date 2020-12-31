@@ -77,6 +77,8 @@
 
         <activity android:name=".Flap"/>
 
+        <activity android:name=".RecycleViewPage"/>
+
         <activity android:name=".FireworksExampleActivity" android:screenOrientation="portrait"/>
     </application>
 

@@ -66,6 +66,10 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(new Intent(this, ScrollingActivity.class));
         });
 
+        binding.btnRecycleView.setOnClickListener(v->{
+            startActivity(new Intent(this, RecycleViewPage.class));
+        });
+
         StatusBarUtils.setDeepStatusBar(true,this);
     }
 
